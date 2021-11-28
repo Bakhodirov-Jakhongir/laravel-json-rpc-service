@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Procedures\TennisProcedure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::rpc('v1/endpoint', [TennisProcedure::class])->name('rpc.endpoint');
+Route::rpc('v1/endpoint', [TennisProcedure::class])->name('rpc.endpoint')->middleware('auth.basic.once');
