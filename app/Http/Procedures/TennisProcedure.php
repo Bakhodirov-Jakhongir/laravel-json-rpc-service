@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Procedures;
 
+use Illuminate\Http\Request;
 use Sajya\Server\Procedure;
 
 class TennisProcedure extends Procedure
@@ -19,8 +20,15 @@ class TennisProcedure extends Procedure
      *
      * @return string
      */
-    public function ping()
+    public function ping(Request $request)
     {
-        return 'pong';
+        return 'pong' . $request->id;
+    }
+
+    public function name(Request $request)
+    {
+        return response()->json([
+            'data' => $request->api
+        ]);
     }
 }
